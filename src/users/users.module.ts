@@ -5,7 +5,7 @@ import { UserService } from './UserService';
 import { User } from '../graphql/models/User';
 import { UserSettingService } from './UserSettingService';
 import { UserSetting } from '../graphql/models/UserSetting';
-import { UserSettingsResolver } from '../graphql/resolvers/UserSettingsResolver';
+import { UserSettingsResolver } from './UserSettingsResolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User, UserSetting])],
