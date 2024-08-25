@@ -12,7 +12,7 @@ import { UserSetting } from './UserSetting';
 @ObjectType()
 export class User {
   @PrimaryGeneratedColumn()
-  @Field((type) => Int)
+  @Field(() => Int)
   id: number;
 
   @Column()
@@ -22,6 +22,10 @@ export class User {
   @Column({ nullable: true })
   @Field({ nullable: true })
   displayName?: string;
+
+  @Column({ nullable: true })
+  @Field(() => Int, { nullable: true })
+  money?: number;
 
   @OneToOne(() => UserSetting)
   @JoinColumn()
