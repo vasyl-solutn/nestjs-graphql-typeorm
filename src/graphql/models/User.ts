@@ -35,6 +35,9 @@ export class User {
   settings?: UserSetting;
 
   @ManyToMany(() => Todo, (todo) => todo.users)
-  @Field(() => [Todo], { description: 'Todos associated with this user' })
-  todos: Todo[];
+  @Field(() => [Todo], {
+    nullable: true,
+    description: 'Todos associated with this user',
+  })
+  todos?: Todo[];
 }

@@ -8,22 +8,43 @@ type UserSetting {
   receiveEmails: Boolean!
 }
 
+type Todo {
+  """The todo's unique identifier"""
+  id: Int!
+
+  """The todo's title"""
+  title: String!
+
+  """The number of points for this todo"""
+  points: Int!
+
+  """Users associated with this todo"""
+  users: [User!]
+}
+
 type User {
   id: Int!
   username: String!
   displayName: String
   money: Int
   settings: UserSetting
+
+  """Todos associated with this user"""
+  todos: [Todo!]
 }
 
 type Query {
   getUserById(id: Int!): User
   getUsers: [User!]!
+  getTodoById(id: Int!): Todo
+  getTodos: [Todo!]!
 }
 
 type Mutation {
   createUser(createUserData: CreateUserInput!): User!
+  addUserTodos(userId: Int!, todoIds: [Int!]!): User!
   createUserSettings(createUserSettingsData: CreateUserSettingsInput!): UserSetting!
+  createTodo(createTodoData: CreateTodoInput!): Todo!
 }
 
 input CreateUserInput {
@@ -36,4 +57,9 @@ input CreateUserSettingsInput {
   userId: Int!
   receiveNotifications: Boolean = false
   receiveEmails: Boolean = false
+}
+
+input CreateTodoInput {
+  title: String!
+  points: Int
 }

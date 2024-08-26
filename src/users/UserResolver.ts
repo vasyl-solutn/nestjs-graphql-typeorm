@@ -21,4 +21,12 @@ export class UserResolver {
   createUser(@Args('createUserData') createUserData: CreateUserInput) {
     return this.userService.createUser(createUserData);
   }
+
+  @Mutation(() => User)
+  async addUserTodos(
+    @Args('userId', { type: () => Int }) userId: number,
+    @Args('todoIds', { type: () => [Int] }) todoIds: number[],
+  ): Promise<User> {
+    return this.userService.addUserTodos(userId, todoIds);
+  }
 }

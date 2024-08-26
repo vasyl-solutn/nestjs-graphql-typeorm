@@ -24,7 +24,10 @@ export class Todo {
   points: number;
 
   @ManyToMany(() => User, (user) => user.todos)
-  @JoinTable()
-  @Field(() => [User], { description: 'Users associated with this todo' })
+  @JoinTable({ name: 'user_todos' })
+  @Field(() => [User], {
+    nullable: true,
+    description: 'Users associated with this todo',
+  })
   users: User[];
 }

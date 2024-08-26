@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './graphql/models/User';
 import { UserSetting } from './graphql/models/UserSetting';
 import { UsersModule } from './users/users.module';
+import { Todo } from './graphql/models/Todo';
+import { TodosModule } from './todos/todos.module';
 
 @Module({
   imports: [
@@ -22,11 +24,12 @@ import { UsersModule } from './users/users.module';
         process.env.NODE_ENV === 'TEST'
           ? 'graphql_tutorial_test'
           : 'graphql_tutorial',
-      entities: [User, UserSetting],
+      entities: [User, UserSetting, Todo],
       synchronize: true,
       logging: true,
     }),
     UsersModule,
+    TodosModule,
   ],
   controllers: [],
   providers: [],
